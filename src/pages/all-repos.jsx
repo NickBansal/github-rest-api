@@ -21,12 +21,21 @@ export const AllRepos = () => {
 
     return (
         <div className="max-w-full md:max-w-2xl lg:max-w-6xl mx-auto p-4">
-            {loading && (
+            {loading ? (
                 <div className="text-center mt-8">
                     <p className="text-center w-full">
                         Loading content, please wait....
                     </p>{' '}
                 </div>
+            ) : (
+                <>
+                    {emptyResults ? (
+                        <p className="text-center w-full">
+                            We couldn't find any results for your search. Please
+                            try again with a different query.
+                        </p>
+                    ) : null}
+                </>
             )}
         </div>
     )
