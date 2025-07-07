@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { FaCodeBranch, FaExclamationCircle } from 'react-icons/fa'
 import { FaArrowRight, FaHeart, FaStar } from 'react-icons/fa6'
+import { MoreInformationModal } from './more-information-modal'
 
 export const ExtraRepoInformation = ({ repo }) => {
     const [infoModal, setInfoModal] = useState(false)
@@ -31,11 +32,10 @@ export const ExtraRepoInformation = ({ repo }) => {
                 <FaArrowRight size={20} />
             </button>
             {infoModal ? (
-                // <MoreInformationModal
-                //     repo={repo}
-                //     onClose={() => setInfoModal(false)}
-                // />
-                <p>HELLO</p>
+                <MoreInformationModal
+                    repo={repo}
+                    onClose={() => setInfoModal(false)}
+                />
             ) : null}
         </div>
     )
