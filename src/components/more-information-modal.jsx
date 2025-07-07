@@ -1,4 +1,8 @@
+import { useGetMarkdown } from '../hooks/useGetMarkdown'
+
 export const MoreInformationModal = ({ repo, onClose }) => {
+    const { loading, data, error } = useGetMarkdown(repo)
+
     return (
         <div
             id="default-modal"
@@ -35,6 +39,12 @@ export const MoreInformationModal = ({ repo, onClose }) => {
                                 <span className="sr-only">Close modal</span>
                             </button>
                         </div>
+
+                        {loading ? (
+                            <div className="flex items-center justify-center p-4 md:p-5">
+                                <LoadingSpinner />
+                            </div>
+                        ) : null}
 
                         <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
                             <button
