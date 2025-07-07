@@ -2,6 +2,7 @@ import { FaGithubSquare } from 'react-icons/fa'
 import cn from 'classnames'
 import { useState } from 'react'
 import { CgChevronDown } from 'react-icons/cg'
+import { ExtraRepoInformation } from './extra-repo-information'
 
 export const SingleRepo = ({ repo }) => {
     const [seeMore, setSeeMore] = useState(false)
@@ -44,7 +45,7 @@ export const SingleRepo = ({ repo }) => {
                     )}
                 />
             </button>
-            {seeMore && <p>Hello</p>}
+            {seeMore && <ExtraRepoInformation repo={repo} />}
         </div>
     )
 }
