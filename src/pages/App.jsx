@@ -1,10 +1,13 @@
 import { Header } from '../components/header'
+import { GithubProvider } from '../context/github-context'
 
 const App = () => {
     return (
-        <div>
-            <Header />
-        </div>
+        <GithubProvider>
+            <div>
+                <Header />
+            </div>
+        </GithubProvider>
     )
 }
 
