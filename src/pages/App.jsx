@@ -1,4 +1,5 @@
 import { Header } from '../components/header'
+import { SearchBar } from '../components/search-bar'
 import { GithubProvider } from '../context/github-context'
 
 const App = () => {
@@ -6,6 +7,7 @@ const App = () => {
         <GithubProvider>
             <div>
                 <Header />
+                <SearchBar />
             </div>
         </GithubProvider>
     )
