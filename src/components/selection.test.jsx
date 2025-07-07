@@ -12,16 +12,33 @@ describe('<Selection />', () => {
 
     it('should render the selection drop down', () => {
         render(
-            <GithubContext.Provider value={{ sortRepos: mockOnSearch }}>
+            <GithubContext.Provider
+                value={{ sortRepos: mockOnSearch, loading: false }}
+            >
                 <Selection />
             </GithubContext.Provider>
         )
         expect(screen.getByRole('combobox')).toBeInTheDocument()
     })
 
+    it('should disable to drop down when loading data', () => {
+        render(
+            <GithubContext.Provider
+                value={{ sortRepos: mockOnSearch, loading: true }}
+            >
+                <Selection />
+            </GithubContext.Provider>
+        )
+
+        const select = screen.getByRole('combobox')
+        expect(select).toBeDisabled()
+    })
+
     it('should call sortRepos with the correct value when an option is selected', () => {
         render(
-            <GithubContext.Provider value={{ sortRepos: mockOnSearch }}>
+            <GithubContext.Provider
+                value={{ sortRepos: mockOnSearch, loading: false }}
+            >
                 <Selection />
             </GithubContext.Provider>
         )

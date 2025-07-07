@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { GithubContext } from '../context/github-context'
 
 export const Selection = () => {
-    const { sortRepos } = useContext(GithubContext)
+    const { sortRepos, loading } = useContext(GithubContext)
 
     const sortOptions = [
         { label: 'Recently Updated', sort: 'updated' },
@@ -22,6 +22,7 @@ export const Selection = () => {
     return (
         <form className="max-w-sm mx-auto mb-6">
             <select
+                disabled={loading}
                 defaultValue=""
                 onChange={handleChange}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 disabled:cursor-not-allowed"
