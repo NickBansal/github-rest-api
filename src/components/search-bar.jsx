@@ -3,13 +3,15 @@ import { GithubContext } from '../context/github-context'
 import { LoadingSpinner } from './loading-spinner'
 
 export const SearchBar = () => {
-    const { loading } = useContext(GithubContext)
+    const { loading, getRepos, repos } = useContext(GithubContext)
 
     const onSubmit = (e) => {
         e.preventDefault()
         const query = e.target.elements['default-search'].value
-        console.log('Search query:', query)
+        getRepos(query)
     }
+
+    console.log('SearchBar rendered with repos:', repos)
 
     return (
         <form
@@ -48,7 +50,7 @@ export const SearchBar = () => {
                     type="search"
                     id="default-search"
                     className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 disabled:cursor-not-allowed"
-                    placeholder="Search github respositories..."
+                    placeholder="Search github repositories..."
                     required
                     disabled={loading}
                 />
