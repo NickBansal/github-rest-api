@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import { GithubContext } from '../context/github-context'
 import { FaArrowTurnUp } from 'react-icons/fa6'
 import { ErrorMessage } from '../components/error-message'
+import { SingleRepo } from '../components/single-repo'
 
 export const AllRepos = () => {
     const { repos, loading, error, emptyResults } = useContext(GithubContext)
@@ -39,7 +40,7 @@ export const AllRepos = () => {
                         <>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                                 {repos.map((repo) => (
-                                    <p>{repo.name}</p>
+                                    <SingleRepo key={repo.id} repo={repo} />
                                 ))}
                             </div>
                         </>
