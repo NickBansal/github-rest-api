@@ -46,6 +46,16 @@ export const MoreInformationModal = ({ repo, onClose }) => {
                             </div>
                         ) : null}
 
+                        {error ? <ErrorMessage /> : null}
+
+                        {data ? (
+                            <div className="p-4 md:p-5 space-y-4">
+                                <div
+                                    dangerouslySetInnerHTML={{ __html: data }}
+                                />
+                            </div>
+                        ) : null}
+
                         <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
                             <button
                                 onClick={onClose}
