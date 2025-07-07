@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { GithubContext } from '../context/github-context'
 import { FaArrowTurnUp } from 'react-icons/fa6'
+import { ErrorMessage } from '../components/error-message'
 
 export const AllRepos = () => {
     const { repos, loading, error, emptyResults } = useContext(GithubContext)
@@ -12,5 +13,9 @@ export const AllRepos = () => {
                 <FaArrowTurnUp className="inline-block ml-2 text-3xl" />
             </p>
         )
+    }
+
+    if (error) {
+        return <ErrorMessage />
     }
 }

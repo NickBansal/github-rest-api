@@ -7,12 +7,14 @@ export const GithubContext = createContext({
     getRepos: () => {},
     loading: false,
     error: false,
+    emptyResults: false,
 })
 
 export const GithubProvider = ({ children }) => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
     const [repos, setRepos] = useState([])
+    const [emptyResults, setEmptyResults] = useState(false)
 
     const getRepos = async (query) => {
         setLoading(true)
@@ -22,6 +24,7 @@ export const GithubProvider = ({ children }) => {
             .get(`https://api.github.com/search/repositories?q=${query}`)
             .then((response) => {
                 setRepos(response.data.items)
+                setEmptyResults(response.data.items.length === 0)
             })
             .catch(() => {
                 setError(true)
@@ -36,6 +39,7 @@ export const GithubProvider = ({ children }) => {
         getRepos,
         loading,
         error,
+        emptyResults,
     }
 
     return (
