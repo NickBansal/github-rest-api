@@ -16,6 +16,7 @@ export const GithubProvider = ({ children }) => {
     const [error, setError] = useState(false)
     const [repos, setRepos] = useState([])
     const [emptyResults, setEmptyResults] = useState(false)
+    const [savedQuery, setSavedQuery] = useState('')
 
     const getData = (query) => {
         setLoading(true)
@@ -37,11 +38,15 @@ export const GithubProvider = ({ children }) => {
 
     const getRepos = (query) => {
         const formattedQuery = `https://api.github.com/search/repositories?q=${query}`
+        setSavedQuery(query)
         getData(formattedQuery)
     }
 
     const sortRepos = ({ sort, order }) => {
-        console.log('Sorting repos:', sort, order)
+        const query = `https://api.github.com/search/repositories?q=${savedQuery}&sort=${sort}${
+            order ? `&order=${order}` : ''
+        }`
+        getData(query)
     }
 
     const values = {
