@@ -1,4 +1,6 @@
 import { useGetMarkdown } from '../hooks/useGetMarkdown'
+import { ErrorMessage } from './error-message'
+import { LoadingSpinner } from './loading-spinner'
 
 export const MoreInformationModal = ({ repo, onClose }) => {
     const { loading, data, error } = useGetMarkdown(repo)

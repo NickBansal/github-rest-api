@@ -5,6 +5,7 @@ import { createContext, useState } from 'react'
 export const GithubContext = createContext({
     repos: [],
     getRepos: () => {},
+    sortRepos: () => {},
     loading: false,
     error: false,
     emptyResults: false,
@@ -16,27 +17,37 @@ export const GithubProvider = ({ children }) => {
     const [repos, setRepos] = useState([])
     const [emptyResults, setEmptyResults] = useState(false)
 
-    const getRepos = async (query) => {
+    const getData = (query) => {
         setLoading(true)
         setError(false)
-
         axios
-            .get(`https://api.github.com/search/repositories?q=${query}`)
+            .get(query)
             .then((response) => {
                 setRepos(response.data.items)
                 setEmptyResults(response.data.items.length === 0)
             })
             .catch(() => {
                 setError(true)
+                setEmptyResults(false)
             })
             .finally(() => {
                 setLoading(false)
             })
     }
 
+    const getRepos = (query) => {
+        const formattedQuery = `https://api.github.com/search/repositories?q=${query}`
+        getData(formattedQuery)
+    }
+
+    const sortRepos = ({ sort, order }) => {
+        console.log('Sorting repos:', sort, order)
+    }
+
     const values = {
         repos,
         getRepos,
+        sortRepos,
         loading,
         error,
         emptyResults,
