@@ -35,6 +35,15 @@ export const AllRepos = () => {
                             try again with a different query.
                         </p>
                     ) : null}
+                    {repos.length > 0 ? (
+                        <>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                                {repos.map((repo) => (
+                                    <p>{repo.name}</p>
+                                ))}
+                            </div>
+                        </>
+                    ) : null}
                 </>
             )}
         </div>
