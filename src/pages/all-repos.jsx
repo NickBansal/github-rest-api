@@ -3,6 +3,7 @@ import { GithubContext } from '../context/github-context'
 import { FaArrowTurnUp } from 'react-icons/fa6'
 import { ErrorMessage } from '../components/error-message'
 import { SingleRepo } from '../components/single-repo'
+import { Selection } from '../components/selection'
 
 export const AllRepos = () => {
     const { repos, loading, error, emptyResults } = useContext(GithubContext)
@@ -22,6 +23,7 @@ export const AllRepos = () => {
 
     return (
         <div className="max-w-full md:max-w-2xl lg:max-w-6xl mx-auto p-4">
+            {repos.length !== 0 ? <Selection /> : null}
             {loading ? (
                 <div className="text-center mt-8">
                     <p className="text-center w-full">
